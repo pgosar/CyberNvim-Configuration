@@ -5,6 +5,7 @@ local M = {}
 -- add any null-ls sources you want here
 M.setup_sources = function(b)
 	return {
+		b.formatting.clang_format,
 		b.completion.luasnip,
 		b.completion.tags,
 		b.formatting.stylua,
