@@ -80,6 +80,10 @@ M.user_conf = function()
 	require("user.language-server-configs.ls_init")
 	require("lsp-zero").setup()
 	require("dap-python").setup("~/.virtualenvs/debugpy/bin/python")
+
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	capabilities.offsetEncoding = { "utf-16" }
+	require("lspconfig").clangd.setup({ capabilities = capabilities })
 end
 
 return M
