@@ -74,7 +74,25 @@ M.enable_plugins = {
 	autosave = false,
 }
 
-M.plugins = { "mfussenegger/nvim-dap-python" }
+local enabled = require("core.utils.utils").enabled
+M.plugins = {
+	"mfussenegger/nvim-dap-python",
+	{
+		"zbirenbaum/copilot.lua",
+		cond = enabled(group, "copilot"),
+		cmd = "Copilot",
+		event = "InsertEnter",
+		dependencies = {
+			"zbirenbaum/copilot-cmp",
+			config = function()
+				require("copilot_cmp").setup()
+			end,
+		},
+		config = function()
+			require("plugin-configs.copilot")
+		end,
+	},
+}
 
 M.user_conf = function()
 	require("user.language-server-configs.ls_init")
@@ -85,5 +103,7 @@ M.user_conf = function()
 	capabilities.offsetEncoding = { "utf-16" }
 	require("lspconfig").clangd.setup({ capabilities = capabilities })
 end
+
+vim.g.rust_recommended_style = false
 
 return M
