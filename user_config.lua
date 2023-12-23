@@ -74,6 +74,12 @@ M.enable_plugins = {
 	autosave = false,
 }
 
+M.options = {
+	opt = {
+		swapfile = false,
+	},
+}
+
 local enabled = require("core.utils.utils").enabled
 M.plugins = {
 	"mfussenegger/nvim-dap-python",
@@ -99,10 +105,10 @@ M.user_conf = function()
 	require("lsp-zero").setup()
 	require("dap-python").setup("~/.virtualenvs/debugpy/bin/python")
 
+	require("user.notify")
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities.offsetEncoding = { "utf-16" }
 	require("lspconfig").clangd.setup({ capabilities = capabilities })
-
 	require("notify")
 end
 
