@@ -80,12 +80,11 @@ M.options = {
 	},
 }
 
-local enabled = require("core.utils.utils").enabled
 M.plugins = {
+	"simrat39/rust-tools.nvim",
 	"mfussenegger/nvim-dap-python",
 	{
 		"zbirenbaum/copilot.lua",
-		cond = enabled(group, "copilot"),
 		cmd = "Copilot",
 		event = "InsertEnter",
 		dependencies = {
@@ -101,15 +100,7 @@ M.plugins = {
 }
 
 M.user_conf = function()
-	require("user.language-server-configs.ls_init")
-	require("lsp-zero").setup()
-	require("dap-python").setup("~/.virtualenvs/debugpy/bin/python")
-
-	require("user.notify")
-	local capabilities = vim.lsp.protocol.make_client_capabilities()
-	capabilities.offsetEncoding = { "utf-16" }
-	require("lspconfig").clangd.setup({ capabilities = capabilities })
-	require("notify")
+	require("user.init")
 end
 
 vim.g.rust_recommended_style = false
