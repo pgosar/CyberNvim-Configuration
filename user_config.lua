@@ -28,7 +28,6 @@ M.setup_sources = function(b)
 		b.diagnostics.checkmake,
 		b.diagnostics.clang_check,
 		b.diagnostics.cmake_lint,
-		b.diagnostics.markdownlint,
 		-- b.diagnostics.pylint,
 		b.diagnostics.revive,
 		-- b.diagnostics.xo,
@@ -66,7 +65,6 @@ M.formatting_servers = {
 		"c",
 		"cmake",
 		"make",
-		"markdown",
 	},
 }
 
@@ -101,8 +99,7 @@ M.plugins = {
 
 M.user_conf = function()
 	require("user.init")
+	vim.g.rust_recommended_style = false
 end
-
-vim.g.rust_recommended_style = false
 
 return M
