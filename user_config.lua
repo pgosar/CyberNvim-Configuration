@@ -43,7 +43,7 @@ M.setup_sources = function(b)
 end
 
 -- add null_ls sources to auto-install
-M.null_ls_ensure_installed = {}
+M.ensure_installed = {}
 
 M.formatting_servers = {
 	["rust_analyzer"] = { "rust" },
