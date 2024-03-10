@@ -9,11 +9,9 @@ M.setup_sources = function(b)
 		b.completion.luasnip,
 		b.completion.tags,
 		b.formatting.stylua,
-		b.formatting.autopep8,
-		b.formatting.beautysh,
 		b.formatting.cbfmt,
 		b.formatting.gofumpt,
-		b.formatting.jq,
+		b.formatting.black,
 		b.formatting.cmake_format,
 		b.formatting.prettierd.with({
 			filetypes = {
@@ -28,13 +26,9 @@ M.setup_sources = function(b)
 		b.formatting.verible_verilog_format,
 		b.diagnostics.verilator,
 		b.diagnostics.checkmake,
-		b.diagnostics.clang_check,
 		b.diagnostics.cmake_lint,
-		-- b.diagnostics.pylint,
+		b.diagnostics.pylint,
 		b.diagnostics.revive,
-		-- b.diagnostics.xo,
-		b.code_actions.cspell,
-		-- b.code_actions.xo,
 		b.code_actions.gitrebase,
 		b.code_actions.gitsigns,
 		b.code_actions.gomodifytags,
@@ -45,7 +39,32 @@ M.setup_sources = function(b)
 end
 
 -- add null_ls sources to auto-install
-M.ensure_installed = {}
+M.ensure_installed = {
+	null_ls = {
+		"clangd",
+		"codelldb",
+		"cspell",
+		"css-lsp",
+		"debugpy",
+		"delve",
+		"gofumpt",
+		"goimports-reviser",
+		"gopls",
+		"html-lsp",
+		"jq",
+		"json-lsp",
+		"lua-language-server",
+		"prettierd",
+		"pyright",
+		"rust-analyzer",
+		"shfmt",
+		"stylua",
+		"svlangserver",
+		"typescript-language-server",
+		"verible",
+		"wgsl-analyzer",
+	},
+}
 
 M.formatting_servers = {
 	["rust_analyzer"] = { "rust" },
