@@ -64,6 +64,9 @@ M.ensure_installed = {
 		"verible",
 		"wgsl-analyzer",
 	},
+	dap = {
+		"python",
+	},
 }
 
 M.formatting_servers = {
