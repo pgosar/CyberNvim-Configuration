@@ -115,6 +115,16 @@ M.plugins = {
 			require("user.plugin-configs.copilot")
 		end,
 	},
+	{
+		"okuuva/auto-save.nvim",
+		event = "VeryLazy",
+		opts = {
+			execution_message = { enabled = false },
+			trigger_events = {
+				defer_save = { "CursorHold", "CursorHoldI" },
+			},
+		},
+	},
 }
 
 M.autocommands = {}
