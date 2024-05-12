@@ -92,9 +92,7 @@ M.formatting_servers = {
 	},
 }
 
-M.enable_plugins = {
-	autosave = false,
-}
+M.enable_plugins = {}
 
 M.options = {
 	opt = {},
@@ -119,9 +117,7 @@ M.plugins = {
 	},
 }
 
-M.autocommands = {
-	format_on_autosave = false,
-}
+M.autocommands = {}
 
 M.user_conf = function()
 	require("user.init")
