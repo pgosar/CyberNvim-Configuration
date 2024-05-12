@@ -38,8 +38,8 @@ M.setup_sources = function(b)
 	}
 end
 
--- add null_ls sources to auto-install
-M.ensure_installed = {
+-- add mason sources to auto-install
+M.mason_ensure_installed = {
 	null_ls = {
 		"clangd",
 		"codelldb",
@@ -88,6 +88,7 @@ M.formatting_servers = {
 		"cpp",
 		"c",
 		"cmake",
+		"systemverilog",
 	},
 }
 
@@ -96,9 +97,7 @@ M.enable_plugins = {
 }
 
 M.options = {
-	opt = {
-		-- swapfile = false,
-	},
+	opt = {},
 }
 
 M.plugins = {
@@ -118,6 +117,10 @@ M.plugins = {
 			require("user.plugin-configs.copilot")
 		end,
 	},
+}
+
+M.autocommands = {
+	format_on_autosave = false,
 }
 
 M.user_conf = function()
