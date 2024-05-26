@@ -10,6 +10,7 @@ M.setup_sources = function(b)
 		b.completion.tags,
 		b.formatting.stylua,
 		b.formatting.cbfmt,
+		b.formatting.shfmt,
 		b.formatting.gofumpt,
 		b.formatting.black,
 		b.formatting.cmake_format,
@@ -95,7 +96,9 @@ M.formatting_servers = {
 M.enable_plugins = {}
 
 M.options = {
-	opt = {},
+	opt = {
+		conceallevel = 3,
+	},
 }
 
 M.plugins = {
@@ -104,6 +107,7 @@ M.plugins = {
 	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
+		cond = M.enable_plugins.cmp,
 		event = "InsertEnter",
 		dependencies = {
 			"zbirenbaum/copilot-cmp",
@@ -119,10 +123,8 @@ M.plugins = {
 		"okuuva/auto-save.nvim",
 		event = "VeryLazy",
 		opts = {
+			debounce_delay = 5000,
 			execution_message = { enabled = false },
-			trigger_events = {
-				defer_save = { "CursorHold", "CursorHoldI" },
-			},
 		},
 	},
 }
@@ -131,7 +133,6 @@ M.autocommands = {}
 
 M.user_conf = function()
 	require("user.init")
-	vim.g.rust_recommended_style = false
 end
 
 return M
