@@ -33,7 +33,6 @@ M.setup_sources = function(b)
 		b.code_actions.gitrebase,
 		b.code_actions.gitsigns,
 		b.code_actions.gomodifytags,
-		b.code_actions.proselint,
 		b.code_actions.refactoring,
 		b.hover.dictionary,
 	}
@@ -42,9 +41,9 @@ end
 -- add mason sources to auto-install
 M.mason_ensure_installed = {
 	null_ls = {
+		"cbfmt",
 		"clangd",
 		"codelldb",
-		"cspell",
 		"css-lsp",
 		"debugpy",
 		"delve",
@@ -56,7 +55,7 @@ M.mason_ensure_installed = {
 		"json-lsp",
 		"lua-language-server",
 		"prettierd",
-		"pyright",
+		"basedpyright",
 		"rust-analyzer",
 		"shfmt",
 		"stylua",
@@ -90,6 +89,7 @@ M.formatting_servers = {
 		"c",
 		"cmake",
 		"systemverilog",
+		"markdown",
 	},
 }
 
@@ -98,6 +98,9 @@ M.enable_plugins = {}
 M.options = {
 	opt = {
 		conceallevel = 3,
+		spell = true,
+		spelllang = "en_us",
+		spellfile = vim.fn.stdpath("config") .. "/spell/en.utf-8.add",
 	},
 }
 
@@ -122,10 +125,27 @@ M.plugins = {
 	{
 		"okuuva/auto-save.nvim",
 		event = "VeryLazy",
-		opts = {
-			debounce_delay = 5000,
-			execution_message = { enabled = false },
-		},
+		config = function()
+			require("user.plugin-configs.autosave")
+		end,
+	},
+	{
+		"skywind3000/asyncrun.vim",
+		event = "VeryLazy",
+	},
+	{
+		"tadmccorkle/markdown.nvim",
+		ft = "markdown",
+		config = function()
+			require("user.plugin-configs.markdown")
+		end,
+	},
+	{
+		"catppuccin/nvim",
+		lazy = false,
+		config = function()
+			require("user.plugin-configs.catppuccin")
+		end,
 	},
 }
 
