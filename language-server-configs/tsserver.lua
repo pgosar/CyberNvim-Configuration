@@ -3,10 +3,10 @@ require("lspconfig").tsserver.setup({
 		typescript = {
 			inlayHints = {
 				includeInlayParameterNameHints = "all",
-				includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
 				includeInlayFunctionParameterTypeHints = true,
 				includeInlayVariableTypeHints = true,
-				includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+				includeInlayVariableTypeHintsWhenTypeMatchesName = true,
 				includeInlayPropertyDeclarationTypeHints = true,
 				includeInlayFunctionLikeReturnTypeHints = true,
 				includeInlayEnumMemberValueHints = true,
@@ -15,10 +15,10 @@ require("lspconfig").tsserver.setup({
 		javascript = {
 			inlayHints = {
 				includeInlayParameterNameHints = "all",
-				includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
 				includeInlayFunctionParameterTypeHints = true,
 				includeInlayVariableTypeHints = true,
-				includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+				includeInlayVariableTypeHintsWhenTypeMatchesName = true,
 				includeInlayPropertyDeclarationTypeHints = true,
 				includeInlayFunctionLikeReturnTypeHints = true,
 				includeInlayEnumMemberValueHints = true,

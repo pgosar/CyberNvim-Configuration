@@ -93,8 +93,6 @@ M.formatting_servers = {
 	},
 }
 
-M.enable_plugins = {}
-
 M.options = {
 	opt = {
 		conceallevel = 3,
@@ -104,13 +102,75 @@ M.options = {
 	},
 }
 
+M.enable_plugins = {
+	aerial = true,
+	alpha = true,
+	asyncrun = true,
+	autotag = true,
+	autosave = true,
+	bufferline = true,
+	catppuccin = true,
+	context = false,
+	copilot = true,
+	dressing = true,
+	gitsigns = true,
+	hop = true,
+	img_clip = true,
+	indent_blankline = true,
+	lsp_zero = true,
+	lualine = true,
+	neodev = true,
+	neoscroll = true,
+	neotree = true,
+	session_manager = true,
+	noice = true,
+	null_ls = true,
+	autopairs = true,
+	cmp = true,
+	colorizer = true,
+	dap = true,
+	dap_python = true,
+	dropbar = true,
+	notify = true,
+	markdown = true,
+	surround = true,
+	treesitter = true,
+	ufo = true,
+	onedark = true,
+	project = true,
+	rainbow = true,
+	rust_tools = true,
+	scope = true,
+	telescope = true,
+	toggleterm = true,
+	trouble = true,
+	twilight = true,
+	whichkey = true,
+	windline = false,
+	zen = true,
+}
+
 M.plugins = {
-	"simrat39/rust-tools.nvim",
-	"mfussenegger/nvim-dap-python",
+	{
+		"simrat39/rust-tools.nvim",
+		ft = "rust",
+		cond = M.enable_plugins.rust_tools,
+		config = function()
+			require("user.plugin-configs.rust-tools")
+		end,
+	},
+	{
+		"mfussenegger/nvim-dap-python",
+		ft = "python",
+		cond = M.enable_plugins.dap_python and M.enable_plugins.dap,
+		config = function()
+			require("user.plugin-configs.dap-python")
+		end,
+	},
 	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
-		cond = M.enable_plugins.cmp,
+		cond = M.enable_plugins.cmp and M.enable_plugins.copilot,
 		event = "InsertEnter",
 		dependencies = {
 			"zbirenbaum/copilot-cmp",
@@ -125,6 +185,7 @@ M.plugins = {
 	{
 		"okuuva/auto-save.nvim",
 		event = "VeryLazy",
+		cond = M.enable_plugins.autosave,
 		config = function()
 			require("user.plugin-configs.autosave")
 		end,
@@ -132,10 +193,12 @@ M.plugins = {
 	{
 		"skywind3000/asyncrun.vim",
 		event = "VeryLazy",
+		cond = M.enable_plugins.asyncrun,
 	},
 	{
 		"tadmccorkle/markdown.nvim",
 		ft = "markdown",
+		cond = M.enable_plugins.markdown,
 		config = function()
 			require("user.plugin-configs.markdown")
 		end,
@@ -143,13 +206,36 @@ M.plugins = {
 	{
 		"catppuccin/nvim",
 		lazy = false,
+		cond = M.enable_plugins.catppuccin,
 		config = function()
 			require("user.plugin-configs.catppuccin")
 		end,
 	},
+	{
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
+		cond = M.enable_plugins.lualine,
+		config = function()
+			require("user.plugin-configs.lualine")
+		end,
+	},
+	{
+		"Bekaboo/dropbar.nvim",
+		event = "VeryLazy",
+		cond = M.enable_plugins.dropbar,
+	},
 }
 
-M.autocommands = {}
+M.autocommands = {
+	alpha_folding = true,
+	treesitter_folds = true,
+	trailing_whitespace = true,
+	remember_file_state = true,
+	session_saved_notification = true,
+	css_colorizer = true,
+	cmp = true,
+	term_spelling = true,
+}
 
 M.user_conf = function()
 	require("user.init")
